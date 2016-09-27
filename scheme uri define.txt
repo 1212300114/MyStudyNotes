@@ -1,0 +1,16 @@
+a demo :          znn://aa.bb:80/test?p=12&d=1
+uri   can split  to  some part   :
+first is scheme      things before ":"
+next is host         before first "/"
+next is path         after first "/" and before first "?"
+and last is param      after "?" split with &
+
+so this project use this to define uri to open app
+
+ <string name="app_scheme">1yxy</string>
+ <string name="app_host">1yxy.com</string>
+ <string name="path_detail">/detail</string>
+ <string name="path_activity">/activity</string>
+
+to open banner activity  ----- uri =  1yxy://1yxy.com/activity
+to open good detail      ----- uri =  1yxy://1yxy.com/detail?peroid=51&fightId=8139

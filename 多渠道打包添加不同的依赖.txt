@@ -1,0 +1,23 @@
+//自定义依赖包
+def customDeps = new HashMap<String, Collection<Dependency>>()
+customDeps.put('渠道A', [dependencies.project(包C)])
+customDeps.put('default', [dependencies.project(包B)])
+
+//更改全局配置
+configurations.all { config ->
+    //遍历所有的config
+    def configName = config.name.replace('Compile', '')
+    if (isFlavors(configName)) {
+        //属于渠道号
+        println config.name
+        //获取此渠道号的自定义依赖包
+        def deps = customDeps.get(configName)
+        if (deps != null) {
+            //取到设置自定义的
+            config.dependencies.addAll(deps)
+        } else {
+            //取不到设置默认的
+            config.dependencies.addAll(customDeps.get('default'))
+        }
+    }
+}
